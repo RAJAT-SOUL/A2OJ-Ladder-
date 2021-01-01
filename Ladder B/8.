@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+#include<string>
+typedef long long int ll;
+using namespace std;
+bool isPrime[1000001];
+void makeSieve()
+{
+	int n=1000000;
+	
+	for(int i=0;i<=n;i++)
+	{
+		isPrime[i]=true;
+	}
+	isPrime[0]=false;
+	isPrime[1]=false;
+	
+	for(int i=2;i*i<=n;i++)
+	{
+		if(isPrime[i] ==true)
+		{
+			for(int j=i*i;j<=n;j+=i)
+				{
+					isPrime[j]=false;
+		        }
+		}
+		
+	}
+}
+
+bool t_prime(ll z)
+{
+	ll a=sqrt(z);
+	double b=sqrt(z);
+	if(a==b)
+	{
+		if(isPrime[a]==true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	}
+	else
+	{
+		return false;
+	}
+	
+	
+}
+
+int main()
+{
+	int n;
+	cin>>n;
+	ll arr[n];
+	makeSieve();
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+	for(int i=0;i<n;i++)
+	{
+		
+		if(t_prime(arr[i]))
+		{
+			cout<<"YES"<<endl;
+		}
+		else
+		{
+			cout<<"NO"<<endl;
+		}
+		
+	}
+}
