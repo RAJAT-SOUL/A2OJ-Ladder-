@@ -1,0 +1,65 @@
+//This solution can be used in case of less number of input size that is if the number provided is of length 9 .
+
+
+#include<bits/stdc++.h>
+#include<string>
+typedef long long int ll;
+using namespace std;
+
+int main()
+{
+	cin.sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int n;
+	cin>>n;
+	vector<int>v;
+	
+
+	string s=to_string(n);
+	int len=s.length();
+	for(int i=0;i<len;i++)
+	{
+		string j="";
+		j+=s[i];
+		int a=stoi(j);
+		if(a%2==0)
+		{
+			v.push_back(i);
+		}
+	}
+	if(v.size()==0)
+	{
+		cout<<"-1"<<endl;
+	}
+	else
+	{
+		
+	
+	int z=0;
+	int v_size=v.size();
+	for(int i=0;i<v_size;i++)
+	{
+		string m=s;
+		int temp =s[v[i]];
+		m[v[i]]=m[len-1];
+		m[len-1]=temp;
+		
+		z=max(z,stoi(m));
+	}
+	cout<<z<<endl;
+		
+	}
+	
+}
+//But in this case as the size of the number was 2*10 ^5 that is tooo long  I had to change the approach and use the char-48 approach to convert string to integer and took n as string
+
+#include<iostream>
+std::string s;
+int i,k,n,p,m=9;
+int main(){
+std::cin>>s;k=s.size()-1;
+for(;i<=k;i++)if((s[i]-48)%2==0){p=i;m=s[i]-48;if(m<s[k]-48)break;}
+s[p]=s[k];s[k]=m+48;
+std::cout<<(m==9?"-1":s);
+}
